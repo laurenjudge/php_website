@@ -10,7 +10,7 @@
       </a>
       <ul class="right hide-on-small-and-down" id="nav-mobile">
         <li>
-          <a href="#" class="brand btn z-depth-0">Add an Item</a>
+          <a href="#" class="brand btn z-depth-0">Add a recipe</a>
         </li>
       </ul>
     </div>
