@@ -3,21 +3,30 @@
     if(empty($_POST['email'])) {
       echo 'An Email is Required';
     } else {
-      echo htmlspecialchars($_POST['email']);
+      $email = $_POST['email'];
+      if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo 'Email must be a valid email address';
+      }
     }
     
     if(empty($_POST['title'])) {
-      echo 'A title is Required';
+      echo 'A Recipe Name is Required';
     } else {
-      $email = $_POST['email'];
-      echo $email;
-      echo htmlspecialchars($_POST['title']);
+      $title = $_POST['title'];
+      //Letters and spaces only
+      if(!preg_match('/^[a-zA-Z\s]+$/', $title)) {
+        echo 'Title must only contain letters';
+      }
     }
     
     if(empty($_POST['list'])) {
-      echo 'At least one recipe is Required';
+      echo 'At least one ingredient is Required';
     } else {
-      echo htmlspecialchars($_POST['list']);
+      $ingredients = $_POST['list'];
+      //Looking for a comma separated list
+      if(!preg_match('/(^[a-zA-Z\s]+)(,\s*[a-zA-Z\s]*)*$/', $ingredients)) {
+        echo 'Each ingredient must be separated by a comma';
+      }
     }
   }
 ?>
@@ -30,7 +39,7 @@
       <h4 class="center">
         Add a Post
       </h4>
-      <form action="add.php" method="" class="white" 
+      <form action="add.php" method="post" class="white" 
         style="padding: 2rem 14rem; 
           margin: 2rem 0">
         <label>Your Email</label>
